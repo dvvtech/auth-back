@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/deploy/" />
+  <Folder Name="/src/">
+    <Project Path="src/Auth.Api/Auth.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
