@@ -1,4 +1,5 @@
-﻿using Auth.Api.DAL.Entities;
+﻿using Auth.Api.DAL.Configurations;
+using Auth.Api.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Auth.Api.DAL
@@ -13,6 +14,8 @@ namespace Auth.Api.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new AccountConfiguration());
+
             base.OnModelCreating(modelBuilder);
         }
     }
