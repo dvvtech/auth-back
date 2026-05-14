@@ -34,7 +34,12 @@ namespace Auth.Api.AppStart
             }
 
             _builder.Services.Configure<DatabaseOptions>(_builder.Configuration.GetSection(DatabaseOptions.SectionName));
-            _builder.Services.Configure<GoogleAuthConfig>(_builder.Configuration.GetSection(GoogleAuthConfig.SectionName));            
+            _builder.Services.Configure<GoogleAuthConfig>(_builder.Configuration.GetSection(GoogleAuthConfig.SectionName));
+
+            _builder.Services.AddOptions<JwtConfig>()
+                .Bind(_builder.Configuration.GetSection(JwtConfig.SectionName))
+                .ValidateDataAnnotations()
+                .ValidateOnStart();
         }
 
         private void SetupDb()
