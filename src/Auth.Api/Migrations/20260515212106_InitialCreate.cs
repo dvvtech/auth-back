@@ -33,6 +33,11 @@ namespace Auth.Api.Migrations
                     table.PrimaryKey("PK_Accounts", x => x.Id);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Accounts",
+                columns: new[] { "Id", "AuthType", "CreatedUtcDate", "Email", "ExternalId", "IsBlocked", "JwtRefreshToken", "Role", "UpdateUtcDate", "UserName" },
+                values: new object[] { 1, 0, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "", "anonymous", false, "", 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "anonymous" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Accounts_ExternalId",
                 table: "Accounts",

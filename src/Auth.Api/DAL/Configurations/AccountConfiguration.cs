@@ -41,6 +41,20 @@ namespace Auth.Api.DAL.Configurations
 
             builder.HasIndex(x => x.ExternalId)
                    .IsUnique();
+
+            builder.HasData(new AccountEntity
+            {
+                Id = 1,
+                ExternalId = "anonymous",
+                UserName = "anonymous",
+                Email = "",
+                JwtRefreshToken = "",
+                AuthType = AuthTypeEntity.Unknown,
+                Role = RoleEntity.User,
+                IsBlocked = false,
+                CreatedUtcDate = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                UpdateUtcDate = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            });
         }
     }
 }

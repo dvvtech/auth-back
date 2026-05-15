@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Auth.Api.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20260515205126_InitialCreate")]
+    [Migration("20260515212106_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -77,6 +77,21 @@ namespace Auth.Api.Migrations
                         .IsUnique();
 
                     b.ToTable("Accounts", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AuthType = 0,
+                            CreatedUtcDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "",
+                            ExternalId = "anonymous",
+                            IsBlocked = false,
+                            JwtRefreshToken = "",
+                            Role = 1,
+                            UpdateUtcDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            UserName = "anonymous"
+                        });
                 });
 #pragma warning restore 612, 618
         }
