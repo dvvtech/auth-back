@@ -2,6 +2,7 @@
   <Folder Name="/deploy/" />
   <Folder Name="/src/">
     <Project Path="src/Auth.Api/Auth.Api.csproj" />
+    <Project Path="src/Auth.Migrator/Auth.Migrator.csproj" />
   </Folder>
   <Folder Name="/tests/" />
 </Solution>

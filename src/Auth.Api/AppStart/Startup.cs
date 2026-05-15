@@ -19,9 +19,9 @@ namespace Auth.Api.AppStart
                 _builder.Services.AddSwaggerGen();
             }
 
-            InitConfigs();
-            SetupDb();
+            InitConfigs();            
             ConfigureServices();
+            SetupDb();
 
             _builder.Services.AddControllers();
         }
