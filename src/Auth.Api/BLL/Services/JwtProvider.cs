@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using Auth.Api.Models;
+using Auth.Api.BLL.Domain;
 
 namespace Auth.Api.BLL.Services
 {
