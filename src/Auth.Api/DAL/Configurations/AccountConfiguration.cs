@@ -31,12 +31,10 @@ namespace Auth.Api.DAL.Configurations
                    .IsRequired();
 
             builder.Property(x => x.CreatedUtcDate)
-                .IsRequired()
-                .HasColumnType("datetime2");
+                .IsRequired();
 
             builder.Property(x => x.UpdateUtcDate)
-                .IsRequired()
-                .HasColumnType("datetime2");
+                .IsRequired();
 
             builder.HasIndex(x => x.JwtRefreshToken)
                    .IsUnique();

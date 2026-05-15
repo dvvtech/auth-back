@@ -8,7 +8,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Auth.Api.DAL.Migrations
+namespace Auth.Api.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
     partial class AuthDbContextModelSnapshot : ModelSnapshot
@@ -34,7 +34,7 @@ namespace Auth.Api.DAL.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedUtcDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -58,7 +58,7 @@ namespace Auth.Api.DAL.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdateUtcDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()

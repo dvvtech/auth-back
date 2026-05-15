@@ -9,10 +9,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Auth.Api.DAL.Migrations
+namespace Auth.Api.Migrations
 {
     [DbContext(typeof(AuthDbContext))]
-    [Migration("20260515201546_InitialCreate")]
+    [Migration("20260515205126_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -37,7 +37,7 @@ namespace Auth.Api.DAL.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedUtcDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -61,7 +61,7 @@ namespace Auth.Api.DAL.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdateUtcDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("UserName")
                         .IsRequired()

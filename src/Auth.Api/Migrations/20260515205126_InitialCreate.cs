@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Auth.Api.DAL.Migrations
+namespace Auth.Api.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -25,8 +25,8 @@ namespace Auth.Api.DAL.Migrations
                     AuthType = table.Column<int>(type: "integer", nullable: false),
                     Role = table.Column<int>(type: "integer", nullable: false),
                     IsBlocked = table.Column<bool>(type: "boolean", nullable: false),
-                    CreatedUtcDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateUtcDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreatedUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdateUtcDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
