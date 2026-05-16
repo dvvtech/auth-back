@@ -13,7 +13,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(app.Environment.IsDevelopment() ? "AllowAll" : "AllowSpecificOriginPolicy");
+//app.UseCors(app.Environment.IsDevelopment() ? "AllowAll" : "AllowSpecificOriginPolicy");
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
