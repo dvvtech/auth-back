@@ -12,19 +12,20 @@ namespace Auth.Api.BLL.Services
         /// <returns></returns>
         public string GenerateAuthUrl()
         {
-            return new GoogleAuthorizationCodeFlow(
-                new GoogleAuthorizationCodeFlow.Initializer
-                {
-                    ClientSecrets = GetClientSecrets(),
-                    Scopes = GetScopes(),
-                    Prompt = "consent"
-                }).CreateAuthorizationCodeRequest(_authConfig.RedirectUrl).Build().ToString();
+            return "";
+            //return new GoogleAuthorizationCodeFlow(
+            //    new GoogleAuthorizationCodeFlow.Initializer
+            //    {
+            //        ClientSecrets = GetClientSecrets(),
+            //        Scopes = GetScopes(),
+            //        Prompt = "consent"
+            //    }).CreateAuthorizationCodeRequest(_authConfig.RedirectUrl).Build().ToString();
         }
 
         private ClientSecrets GetClientSecrets()
         {
-            string clientId = _authConfig.ClientId;
-            string clientSecret = _authConfig.ClientSecret;
+            string clientId = "";// _authConfig.ClientId;
+            string clientSecret = ""; //_authConfig.ClientSecret;
 
             return new() { ClientId = clientId, ClientSecret = clientSecret };
         }

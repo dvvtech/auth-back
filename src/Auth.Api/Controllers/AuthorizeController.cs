@@ -50,8 +50,10 @@ namespace Auth.Api.Controllers
 
         [HttpGet("test")]
         public ActionResult Test()
-        { 
-            return Ok("123");
+        {
+            var domainOnly = Request.Host.Host;
+
+            return Ok("123" + domainOnly);
         }
     }
 }

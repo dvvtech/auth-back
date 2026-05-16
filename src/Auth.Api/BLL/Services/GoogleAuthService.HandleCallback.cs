@@ -24,7 +24,8 @@ namespace Auth.Api.BLL.Services
                         Scopes = GetScopes()
                     });
 
-                var tokenResponse = await flow.ExchangeCodeForTokenAsync("user", code, _authConfig.RedirectUrl, CancellationToken.None);
+                //var tokenResponse = await flow.ExchangeCodeForTokenAsync("user", code, _authConfig.RedirectUrl, CancellationToken.None);
+                var tokenResponse = await flow.ExchangeCodeForTokenAsync("user", code, "_authConfig.RedirectUrl", CancellationToken.None);
                 GoogleUserInfo userInfo = await GetUserInfo(tokenResponse.AccessToken);
 
                 string accessToken = string.Empty;
