@@ -1,4 +1,6 @@
 ﻿using Auth.Api.AppStart.Extensions;
+using Auth.Api.BLL.Abstract;
+using Auth.Api.BLL.Services;
 using Auth.Api.Configuration;
 using Auth.Api.DAL;
 
@@ -51,6 +53,10 @@ namespace Auth.Api.AppStart
         private void ConfigureServices()
         {
             CorsExtensions.ConfigureCors(_builder.Services);
+            _builder.Services.AddScoped<IAuthService, AuthService>();
+            _builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+            _builder.Services.AddScoped<GoogleAuthService>();
+            _builder.Services.AddHttpClient<GoogleAuthService>();
         }
     }
 }
