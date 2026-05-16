@@ -48,7 +48,7 @@ namespace Auth.Api.Controllers
             return Ok(tokenResult);
         }
 
-        [HttpGet("test")]
+        [HttpGet]
         public ActionResult Test()
         { 
             return Ok("123");
