@@ -14,11 +14,11 @@ services:
         condition: on-failure
       labels:      
         - "traefik.enable=true"      
-        - "traefik.http.routers.auth-api.rule=Host(`api.cloud-platform.pro`) && PathPrefix(`/log`)"
+        - "traefik.http.routers.auth-api.rule=Host(`api.cloud-platform.pro`) && PathPrefix(`/alog`)"      
         - "traefik.http.routers.auth-api.entrypoints=websecure"      
         - "traefik.http.routers.auth-api.tls.certresolver=letsencrypt"     
         - "traefik.http.services.auth-api.loadbalancer.server.port=8080"
-        - "traefik.http.middlewares.auth-stripprefix.stripprefix.prefixes=/log"
+        - "traefik.http.middlewares.auth-stripprefix.stripprefix.prefixes=/alog"
         - "traefik.http.routers.auth-api.middlewares=auth-stripprefix"
 
 networks:
