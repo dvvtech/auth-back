@@ -23,7 +23,7 @@ namespace Auth.Api.Controllers
         public IActionResult Authorize()
         {            
             var domainNam11e = Request.Host.Host;
-            _logger.LogInformation("1: " + domainNam11e);
+            _logger.LogInformation("1: " + domainNam11e);//
             var domainName = "api.bacbac.ru";
             var authUrl = _authService.GenerateAuthUrl(domainName);
             return Ok(authUrl);
