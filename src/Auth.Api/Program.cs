@@ -1,5 +1,4 @@
 using Auth.Api.AppStart;
-using Auth.Api.AppStart.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,11 +12,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-else
-{
-    app.ApplyCors();
-}
 
+app.UseCors(app.Environment.IsDevelopment() ? "AllowAll" : "AllowSpecificOriginPolicy");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 

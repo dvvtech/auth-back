@@ -1,4 +1,5 @@
-﻿using Auth.Api.Configuration;
+﻿using Auth.Api.AppStart.Extensions;
+using Auth.Api.Configuration;
 using Auth.Api.DAL;
 
 namespace Auth.Api.AppStart
@@ -48,8 +49,8 @@ namespace Auth.Api.AppStart
         }
 
         private void ConfigureServices()
-        { 
-        
+        {
+            CorsExtensions.ConfigureCors(_builder.Services);
         }
     }
 }
