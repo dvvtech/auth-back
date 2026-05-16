@@ -10,23 +10,26 @@ namespace Auth.Api.BLL.Services
         /// Возвращаем пользователю урл для авторизации в гугл
         /// </summary>
         /// <returns></returns>
-        public string GenerateAuthUrl()
+        public string GenerateAuthUrl(string domainName)
         {
-            return "";
-            //return new GoogleAuthorizationCodeFlow(
-            //    new GoogleAuthorizationCodeFlow.Initializer
-            //    {
-            //        ClientSecrets = GetClientSecrets(),
-            //        Scopes = GetScopes(),
-            //        Prompt = "consent"
-            //    }).CreateAuthorizationCodeRequest(_authConfig.RedirectUrl).Build().ToString();
+            if (_authConfig.Sites.TryGetValue(domainName, out var config))
+            {
+                return new GoogleAuthorizationCodeFlow(
+                    new GoogleAuthorizationCodeFlow.Initializer
+                    {
+                        ClientSecrets = GetClientSecrets(config.ClientId, config.ClientSecret),
+                        Scopes = GetScopes(),
+                        Prompt = "consent"
+                    }).CreateAuthorizationCodeRequest(config.RedirectUrl).Build().ToString();
+            }
+            else
+            {
+                return "";
+            }            
         }
 
-        private ClientSecrets GetClientSecrets()
-        {
-            string clientId = "";// _authConfig.ClientId;
-            string clientSecret = ""; //_authConfig.ClientSecret;
-
+        private ClientSecrets GetClientSecrets(string clientId, string clientSecret)
+        {            
             return new() { ClientId = clientId, ClientSecret = clientSecret };
         }
 

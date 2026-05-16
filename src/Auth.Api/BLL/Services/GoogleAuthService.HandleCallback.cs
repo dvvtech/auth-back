@@ -13,19 +13,23 @@ namespace Auth.Api.BLL.Services
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public async Task<TokenResponse> HandleCallback(string code)
+        public async Task<TokenResponse> HandleCallback(string code, string domainName)
         {
+            if (_authConfig.Sites.TryGetValue(domainName, out var config))
+            { 
+            }
+            
             try
             {
                 var flow = new GoogleAuthorizationCodeFlow(
                     new GoogleAuthorizationCodeFlow.Initializer
                     {
-                        ClientSecrets = GetClientSecrets(),
+                        ClientSecrets = GetClientSecrets(config.ClientId, config.ClientSecret),
                         Scopes = GetScopes()
                     });
 
                 //var tokenResponse = await flow.ExchangeCodeForTokenAsync("user", code, _authConfig.RedirectUrl, CancellationToken.None);
-                var tokenResponse = await flow.ExchangeCodeForTokenAsync("user", code, "_authConfig.RedirectUrl", CancellationToken.None);
+                var tokenResponse = await flow.ExchangeCodeForTokenAsync("user", code, config.RedirectUrl, CancellationToken.None);
                 GoogleUserInfo userInfo = await GetUserInfo(tokenResponse.AccessToken);
 
                 string accessToken = string.Empty;

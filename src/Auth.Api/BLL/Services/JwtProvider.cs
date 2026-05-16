@@ -1,11 +1,12 @@
 ﻿using Auth.Api.BLL.Abstract;
+using Auth.Api.BLL.Domain;
 using Auth.Api.Configuration;
 using Microsoft.Extensions.Options;
-using System.Security.Claims;
-using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using Auth.Api.BLL.Domain;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Auth.Api.BLL.Services
 {
@@ -20,7 +21,7 @@ namespace Auth.Api.BLL.Services
 
         public string GenerateRefreshToken()
         {
-            throw new NotImplementedException();
+            return Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
         }
 
         /// <summary>
