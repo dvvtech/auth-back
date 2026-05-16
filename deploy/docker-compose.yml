@@ -1,0 +1,30 @@
+services:
+  auth_api:        
+    image: ghcr.io/dvvtech/auth-back:latest      
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Prod      
+    networks:
+      - public-network5
+    secrets:      
+      - auth_connection_string
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      labels:      
+        - "traefik.enable=true"      
+        - "traefik.http.routers.auth-api.rule=Host(`api.cloud-platform.pro`) && PathPrefix(`/`)"
+        - "traefik.http.routers.auth-api.entrypoints=websecure"      
+        - "traefik.http.routers.auth-api.tls.certresolver=letsencrypt"     
+        - "traefik.http.services.auth-api.loadbalancer.server.port=8080"
+        - "traefik.http.middlewares.auth-stripprefix.stripprefix.prefixes=/"
+        - "traefik.http.routers.auth-api.middlewares=auth-stripprefix"
+
+networks:
+  public-network5:
+    external: true
+
+secrets:  
+  auth_connection_string:
+    external: true
