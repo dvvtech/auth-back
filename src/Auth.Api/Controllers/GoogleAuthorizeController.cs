@@ -22,7 +22,8 @@ namespace Auth.Api.Controllers
         [HttpGet]
         public IActionResult Authorize()
         {            
-            var domainName = Request.Host.Host;            
+            var domainName = Request.Host.Host;
+            _logger.LogInformation(domainName);
             var authUrl = _authService.GenerateAuthUrl(domainName);
             return Ok(authUrl);
         }
