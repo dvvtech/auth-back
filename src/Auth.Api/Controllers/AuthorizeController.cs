@@ -66,6 +66,12 @@ namespace Auth.Api.Controllers
         {
             var domainOnly = Request.Host.Host;
 
+            var refreshToken = Request.Cookies["refreshToken"];
+            _logger.LogInformation(refreshToken);
+
+            var accessToken = Request.Cookies["accessToken"];
+            _logger.LogInformation(accessToken);
+
             return Ok("123" + domainOnly);
         }
 
