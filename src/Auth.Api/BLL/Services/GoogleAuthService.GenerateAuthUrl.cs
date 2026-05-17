@@ -14,6 +14,8 @@ namespace Auth.Api.BLL.Services
         {
             if (_authConfig.Sites.TryGetValue(domainName, out var config))
             {
+                _logger.LogInformation(config.ClientId);
+
                 return new GoogleAuthorizationCodeFlow(
                     new GoogleAuthorizationCodeFlow.Initializer
                     {
