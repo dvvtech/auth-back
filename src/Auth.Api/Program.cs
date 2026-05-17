@@ -19,7 +19,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors(app.Environment.IsDevelopment() ? "AllowAll" : "AllowSpecificOrigin");
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseCookiePolicy();
 app.UseMiddleware<CookieTokenMiddleware>();
 app.UseAuthentication();

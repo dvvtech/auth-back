@@ -10,6 +10,8 @@ services:
       - auth_connection_string
       - GoogleAuth__Sites__api.bacbac.ru__ClientId
       - GoogleAuth__Sites__api.bacbac.ru__ClientSecret
+      - GoogleAuth__Sites__api.unisonmusic.ru__ClientId
+      - GoogleAuth__Sites__api.unisonmusic.ru__ClientSecret
     deploy:
       mode: replicated
       replicas: 1
@@ -36,4 +38,8 @@ secrets:
   GoogleAuth__Sites__api.bacbac.ru__ClientId:
     external: true
   GoogleAuth__Sites__api.bacbac.ru__ClientSecret:
+    external: true
+  GoogleAuth__Sites__api.unisonmusic.ru__ClientId:
+    external: true
+  GoogleAuth__Sites__api.unisonmusic.ru__ClientSecret:
     external: true
