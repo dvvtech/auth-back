@@ -41,7 +41,7 @@ namespace Auth.Api.Controllers
                 TokenResponse tokenResponse = await _authService.HandleCallback(code, domainName);
 
                 //Перенаправляем пользователя на фронтенд
-                return Redirect($"https://somedomain.com?" +
+                return Redirect($"https://bacbac.ru?" +
                                 $"accessToken={Uri.EscapeDataString(tokenResponse.AccessToken)}&" +
                                 $"refreshToken={Uri.EscapeDataString(tokenResponse.RefreshToken)}");
             }
