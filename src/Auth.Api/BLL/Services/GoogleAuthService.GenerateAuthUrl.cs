@@ -14,6 +14,7 @@ namespace Auth.Api.BLL.Services
         {
             if (_authConfig.Sites.TryGetValue(domainName, out var config))
             {
+                _logger.LogInformation("clientId");
                 _logger.LogInformation(config.ClientId);
 
                 return new GoogleAuthorizationCodeFlow(
@@ -26,6 +27,7 @@ namespace Auth.Api.BLL.Services
             }
             else
             {
+                _logger.LogInformation("not found");
                 return "";
             }            
         }
