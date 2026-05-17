@@ -15,6 +15,10 @@ namespace Auth.Api.BLL.Services
             if (_authConfig.Sites.TryGetValue(domainName, out var config))
             {
                 _logger.LogInformation("clientId");
+                if (string.IsNullOrEmpty(config.ClientId))
+                {
+                    _logger.LogInformation("string is null");
+                }
                 _logger.LogInformation(config.ClientId);
 
                 return new GoogleAuthorizationCodeFlow(
