@@ -1,6 +1,10 @@
 using Auth.Api.AppStart;
+using System.Security.Cryptography;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var keyBytes = RandomNumberGenerator.GetBytes(64);
+var rty = Convert.ToBase64String(keyBytes);
 
 var startup = new Startup(builder);
 startup.Initialize();

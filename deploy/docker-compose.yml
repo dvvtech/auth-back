@@ -6,6 +6,7 @@ services:
     networks:
       - public-network5
     secrets:      
+      - Jwt__Key
       - auth_connection_string
       - GoogleAuth__Sites__api.bacbac.ru__ClientId
       - GoogleAuth__Sites__api.bacbac.ru__ClientSecret
@@ -28,6 +29,8 @@ networks:
     external: true
 
 secrets:  
+  Jwt__Key:
+    external: true
   auth_connection_string:
     external: true
   GoogleAuth__Sites__api.bacbac.ru__ClientId:

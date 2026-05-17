@@ -22,9 +22,7 @@ namespace Auth.Api.Controllers
         [HttpGet]
         public IActionResult Authorize()
         {            
-            var domainNam11e = Request.Host.Host;
-            _logger.LogInformation("1: " + domainNam11e);
-            var domainName = "api.bacbac.ru";              
+            var domainName = Request.Host.Host;            
             var authUrl = _authService.GenerateAuthUrl(domainName);
             return Ok(authUrl);
         }
@@ -39,11 +37,8 @@ namespace Auth.Api.Controllers
                     return BadRequest("Google auth: Code is required");
                 }
 
-                var domainNam11e = Request.Host.Host;
-                _logger.LogInformation("2: " + domainNam11e);
-                var domainName = "api.bacbac.ru";
-
-                TokenResponse tokenResponse = new TokenResponse();//await _authService.HandleCallback(code, domainName);
+                var domainName = Request.Host.Host;                
+                TokenResponse tokenResponse = await _authService.HandleCallback(code, domainName);
 
                 //Перенаправляем пользователя на фронтенд
                 return Redirect($"https://somedomain.com?" +
