@@ -7,6 +7,8 @@ services:
       - public-network5
     secrets:      
       - auth_connection_string
+      - GoogleAuth__Sites__api.bacbac.ru__ClientId
+      - GoogleAuth__Sites__api.bacbac.ru__ClientSecret
     deploy:
       mode: replicated
       replicas: 1
@@ -27,4 +29,8 @@ networks:
 
 secrets:  
   auth_connection_string:
+    external: true
+  GoogleAuth__Sites__api.bacbac.ru__ClientId:
+    external: true
+  GoogleAuth__Sites__api.bacbac.ru__ClientSecret:
     external: true
