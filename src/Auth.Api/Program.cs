@@ -1,4 +1,5 @@
 using Auth.Api.AppStart;
+using Auth.Api.AppStart.Extensions;
 using System.Security.Cryptography;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,9 +18,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseCors(app.Environment.IsDevelopment() ? "AllowAll" : "AllowSpecificOriginPolicy");
-app.UseCors("AllowAll");
+app.UseCors(app.Environment.IsDevelopment() ? "AllowAll" : "AllowSpecificOrigin");
 app.UseHttpsRedirection();
+app.UseCookiePolicy();
+app.UseMiddleware<CookieTokenMiddleware>();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

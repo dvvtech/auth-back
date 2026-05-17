@@ -3,6 +3,9 @@ using Auth.Api.BLL.Abstract;
 using Auth.Api.BLL.Services;
 using Auth.Api.Configuration;
 using Auth.Api.DAL;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Auth.Api.AppStart
 {
@@ -25,6 +28,8 @@ namespace Auth.Api.AppStart
             InitConfigs();            
             ConfigureServices();
             SetupDb();
+
+            ConfigureAuthentication();
 
             _builder.Services.AddControllers();
         }
@@ -61,6 +66,28 @@ namespace Auth.Api.AppStart
             _builder.Services.AddScoped<IJwtProvider, JwtProvider>();
             _builder.Services.AddScoped<GoogleAuthService>();
             _builder.Services.AddHttpClient<GoogleAuthService>();
+        }
+
+        private void ConfigureAuthentication()
+        {
+            var jwtConfig = _builder.Configuration
+                .GetSection(JwtConfig.SectionName)
+                .Get<JwtConfig>();
+
+            _builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = jwtConfig.Issuer,
+                        ValidAudience = jwtConfig.Audience,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.Key))
+                    };
+                });
         }
     }
 }

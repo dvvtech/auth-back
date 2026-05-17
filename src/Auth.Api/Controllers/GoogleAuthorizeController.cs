@@ -40,16 +40,29 @@ namespace Auth.Api.Controllers
                 var domainName = Request.Host.Host;                
                 TokenResponse tokenResponse = await _authService.HandleCallback(code, domainName);
 
-                //Перенаправляем пользователя на фронтенд
-                return Redirect($"https://bacbac.ru?" +
-                                $"accessToken={Uri.EscapeDataString(tokenResponse.AccessToken)}&" +
-                                $"refreshToken={Uri.EscapeDataString(tokenResponse.RefreshToken)}");
+                SetTokenCookie("accessToken", tokenResponse.AccessToken, sameSite: SameSiteMode.None);
+                SetTokenCookie("refreshToken", tokenResponse.RefreshToken, sameSite: SameSiteMode.Strict);
+
+                return Redirect("https://bacbac.ru");
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Google auth exception: {ex.Message}");
                 return BadRequest(ex.Message);
             }
+        }
+
+        private void SetTokenCookie(string name, string value, SameSiteMode sameSite)
+        {
+            Response.Cookies.Append(name, value, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = sameSite,
+                Domain = ".bacbac.ru",
+                Path = "/",
+                Expires = DateTimeOffset.UtcNow.AddDays(30)
+            });
         }
     }
 }
