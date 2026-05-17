@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
-
 namespace Auth.Api.AppStart.Extensions
 {
     public class CookieTokenMiddleware
